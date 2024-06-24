@@ -2,7 +2,10 @@ let list = document.getElementById('list');                                     
 
 list.innerHTML = list.innerHTML.replace('Apples', 'Granny Smith Apples');                       //updates the HTML content inside `list and replaces apples with Granny smiths
 
-document.querySelector('li:last-child').remove();                                               //Removes the last element in li within the `list` element
+let oatMilkItem = Array.from(list.children).find(item => item.textContent === 'Oat Milk');      //Finds Oat Milk, wherever it is in the array and removes it if it exists (previously used (document.querySelector('li:last-child').remove();) but that would not have specifically accounted for the criteria in the assignement
+if (oatMilkItem) {
+    oatMilkItem.remove();
+}                                             
 
 let newLI = document.createElement('li');                                                       //creates a new `<li>` element and sets its innerHTML to Kombucha
 newLI.innerHTML = 'Kombucha';
@@ -19,7 +22,7 @@ itemsToAdd.forEach(item => {                                                    
     newItem.innerHTML = item;
 
     if (item === 'Almonds') {                                                                   //if the item === Almonds, add it to the class "important"
-        newItem. classList.add('Important');
+        newItem. classList.add('important');
     }
 
     list.appendChild(newItem);                                                                  //Iterate through each itme in the `iTA` array using `forEach()` creating a new `<li>` element before appending it to the `list`
