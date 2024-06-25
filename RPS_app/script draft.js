@@ -6,20 +6,15 @@ const handImages = {
     scissors: '/path/to/scissors.png'
 };
 
-// Define players with empty names, getHand function, and initial score
+// Define players with empty names and initial score
 let players = {
-    player1: { name: '', getHand: getHand, score: 0 },
-    player2: { name: '', getHand: getHand, score: 0 },
+    player1: { name: '', hand: '', score: 0 },
+    player2: { name: '', getHand: () => hands[Math.floor(Math.random() * hands.length)], score: 0 }
 };
 
 // Variables to track tournament state and game outcomes
 let tournamentStarted = false;
 let game1Outcome = null; // Outcome of game 1 ('player1', 'player2', 'draw')
-
-// Function to generate a random hand from hands array
-function getHand() {
-    return hands[Math.floor(Math.random() * hands.length)];
-}
 
 // Function to enable name input and set player name
 function enableNameInput(playerId) {
@@ -67,21 +62,45 @@ document.querySelector('.btn-outline-primary').addEventListener('click', functio
 // Event listener for Game 1 Play button
 document.getElementById('play-game1').addEventListener('click', function() {
     if (tournamentStarted) {
-        const result = playRound(players.player1, players.player2);
-        updateGameUI('game1', result, players.player1, players.player2);
-        game1Outcome = result.winner === 'draw' ? 'draw' : result.winner.name;
+        // Player 1's hand is chosen manually
+        const hand1 = players.player1.hand;
+        // Player 2's hand is generated randomly
+        const hand2 = players.player2.getHand();
         
-        // Check if any player has won the tournament (reached 3 wins)
-        if (players.player1.score === 3 || players.player2.score === 3) {
-            endGame();
+        // Validate Player 1's hand choice
+        if (hand1 && hand2) {
+            const result = playRound(players.player1, players.player2);
+            updateGameUI('game1', result, players.player1, players.player2);
+            game1Outcome = result.winner === 'draw' ? 'draw' : result.winner.name;
+            
+            // Check if any player has won the tournament (reached 3 wins)
+            if (players.player1.score === 3 || players.player2.score === 3) {
+                endGame();
+            }
+        } else {
+            alert("Please choose a hand for Player 1.");
         }
     }
 });
 
+// Event listener for Player 1's hand choice buttons (rock, paper, scissors)
+document.getElementById('rock-btn').addEventListener('click', function() {
+    players.player1.hand = 'rock';
+    playGameRound();
+});
+document.getElementById('paper-btn').addEventListener('click', function() {
+    players.player1.hand = 'paper';
+    playGameRound();
+});
+document.getElementById('scissors-btn').addEventListener('click', function() {
+    players.player1.hand = 'scissors';
+    playGameRound();
+});
+
 // Function to play a round between two players
 function playRound(player1, player2) {
-    const hand1 = player1.getHand();
-    const hand2 = player2.getHand();
+    const hand1 = player1.hand;
+    const hand2 = player2.getHand(); // Player 2's hand is still randomly generated
     let winner = null;
 
     if (hand1 === hand2) {
@@ -121,7 +140,6 @@ function updateGameUI(gameId, result, player1, player2) {
     // Update the score text
     gameScore.textContent = `${player1.name}: ${player1.score}, ${player2.name}: ${player2.score}`;
 }
-
 
 // Function to end the tournament after a player reaches 3 wins
 function endGame() {

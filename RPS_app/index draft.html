@@ -5,20 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+         body {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+         }
+        .carousel-item img {
+            max-width: 50%; /* Adjust the max-width to the desired size */
+            height: auto;
+            margin: 0 auto; /* Center the image */
+        }
+        .carousel-container {
+            max-width: 500px; /* Adjust container max-width */
+            height: 300px;
+            margin: 0 auto; /* Center the container */
+        }
+        .smaller-input {
+            width: 80px; /* Adjust the width to your preference */
+            padding: 0.2rem 0.2rem; /* Adjust padding as needed */
+            font-size: 1rem; /* Adjust font size as needed */
+        }
+        .hand-btn.active {
+            background-color: yellow; /* Choose your preferred highlight color */
+        }
+    </style>
 </head>
-<body class="container">
+<body class="container mt-5">
     <!-- ROCK PAPER SCISSOR carousel -->
     <header>
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="..." class="d-block w-100" alt="ROCK">
+                    <img src="rocks.jpg" class="d-block w-100" style="max-width: 400px; max-height: 300px;" alt="ROCK">
                 </div>
                 <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="PAPER">
+                    <img src="crane.jpg" class="d-block w-100" style="max-width: 400px; max-height: 300px;" alt="PAPER">
                 </div>
                 <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="SCISSORS">
+                    <img src="scissors.jpg" class="d-block w-100" style="max-width: 400px; max-height: 300px;" alt="SCISSORS">
                 </div>
             </div>
         </div>
@@ -27,10 +50,10 @@
 
     <!-- Enter Player Names -->
     <div class="container text-center">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col">
                 <div class="input-group mb-3">
-                    <input type="text" id="player1" class="form-control" placeholder="Player 1" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <input type="text" id="player1" class="form-control smaller-input" placeholder="Player 1" aria-label="Example text with button addon" aria-describedby="button-addon1">
                 </div>
             </div>
             <div class="col" style="max-width: 18rem;">
@@ -39,7 +62,7 @@
             </div>
             <div class="col">
                 <div class="input-group mb-3">
-                    <input type="text" id="player2" class="form-control" placeholder="Player 2" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <input type="text" id="player2" class="form-control smaller-input" placeholder="Player 2" aria-label="Example text with button addon" aria-describedby="button-addon1">
                 </div>
 
             </div>
@@ -49,22 +72,27 @@
 
     <!-- Play Area -->
     <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <img id="game1-hand" src="" class="card-img-top" alt="Game 1 Hand">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <img id="game1-hand" src='' class="card-img-top" alt="Game 1 Hand">
                     <div class="card-body">
-                        <p class="card-text">Rock, Paper Scissor</p>
+                        <p class="card-text">                    
+                            <div class="card-footer text-center">
+                            <button class="btn btn-primary" type="button" id="rock-btn">Rock</button>
+                            <button class="btn btn-primary" type="button" id="paper-btn">Paper</button>
+                            <button class="btn btn-primary" type="button" id="scissors-btn">Scissors</button>
+                        </div></p>
                     </div>
-                </div>
-                <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary" type="button" id="play-game1">Play</button>
-                </div>
-                <div class="input-group mb-3">
-                    <p id="game1-result">Game 1 Result</p>
-                </div>
-                <div class="input-group mb-3">
-                    <p id="game1-score">Player 1: 0, Player 2: 0</p>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-outline-secondary" type="button" id="play-game1">Play</button>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p id="game1-result">Game 1 Result</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p id="game1-score">Player 1: 0, Player 2: 0</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,8 +101,12 @@
 
     <!-- World Champ Display -->
     <div class="container text-center">
-        <div class="input-group mb-3">
-            <h2 id="champion">World Champion</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-2">
+                <div class="input-group mb-3">
+                    <h2 id="champion">World Champion</h2>
+                </div>
+            </div>
         </div>
     </div>
 
