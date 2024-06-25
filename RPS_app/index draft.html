@@ -25,7 +25,25 @@
             font-size: 1rem; /* Adjust font size as needed */
         }
         .hand-btn.active {
-            background-color: yellow; /* Choose your preferred highlight color */
+            background-color: rgb(0, 255, 26); /* Choose your preferred highlight color */
+        }
+        header {
+            min-height: 300px;
+        }
+        @keyframes flash {
+            0% {
+                background-color: #f8d7da; /* Red background color */
+            }
+            50% {
+                background-color: #dc3545; /* Darker red */
+            }
+            100% {
+                background-color: #f8d7da; /* Back to original red */
+            }
+        }
+
+        .flash {
+            animation: flash 1s infinite; /* Flashing animation with 1 second duration, infinite loop */
         }
     </style>
 </head>
@@ -79,9 +97,9 @@
                     <div class="card-body">
                         <p class="card-text">                    
                             <div class="card-footer text-center">
-                            <button class="btn btn-primary" type="button" id="rock-btn">Rock</button>
-                            <button class="btn btn-primary" type="button" id="paper-btn">Paper</button>
-                            <button class="btn btn-primary" type="button" id="scissors-btn">Scissors</button>
+                            <button class="btn btn-primary" class = "hand-btn" type="button" id="rock-btn">Rock</button>
+                            <button class="btn btn-primary" class = "hand-btn" type="button" id="paper-btn">Paper</button>
+                            <button class="btn btn-primary" class = "hand-btn" type="button" id="scissors-btn">Scissors</button>
                         </div></p>
                     </div>
                     <div class="card-footer text-center">

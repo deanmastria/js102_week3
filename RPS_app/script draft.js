@@ -40,23 +40,35 @@ function allPlayersEntered() {
     );
 }
 
+// Enable start tournament button and apply flashing effect
+function enableStartTournamentButton() {
+    if (allPlayersEntered()) {
+        tournamentStarted = true;
+        const startButton = document.querySelector('.btn-outline-primary');
+        startButton.disabled = false;
+        startButton.classList.add('flash'); // Add flashing effect
+    }
+}
+
+// Event listener for Start Tournament button
+document.querySelector('.btn-outline-primary').addEventListener('click', function() {
+    if (allPlayersEntered()) {
+        tournamentStarted = true;
+        const startButton = document.querySelector('.btn-outline-primary');
+        startButton.disabled = true; // Disable after starting tournament
+        startButton.classList.remove('flash'); // Remove flashing effect
+        document.getElementById('play-game1').disabled = false;
+    } else {
+        alert("Please enter names for all players before starting the tournament.");
+    }
+});
+
 // Event listeners for player name inputs and Start Tournament button
 document.getElementById('player1').addEventListener('input', function() {
     enableNameInput('player1');
 });
 document.getElementById('player2').addEventListener('input', function() {
     enableNameInput('player2');
-});
-
-// Event listener for Start Tournament button
-document.querySelector('.btn-outline-primary').addEventListener('click', function() {
-    if (allPlayersEntered()) {
-        tournamentStarted = true;
-        document.querySelector('.btn-outline-primary').disabled = true; // Disable after starting tournament
-        document.getElementById('play-game1').disabled = false;
-    } else {
-        alert("Please enter names for all players before starting the tournament.");
-    }
 });
 
 // Event listener for Game 1 Play button
@@ -86,16 +98,30 @@ document.getElementById('play-game1').addEventListener('click', function() {
 // Event listener for Player 1's hand choice buttons (rock, paper, scissors)
 document.getElementById('rock-btn').addEventListener('click', function() {
     players.player1.hand = 'rock';
+    updateActiveButton('rock-btn');
     playGameRound();
 });
 document.getElementById('paper-btn').addEventListener('click', function() {
     players.player1.hand = 'paper';
+    updateActiveButton('paper-btn');
     playGameRound();
 });
 document.getElementById('scissors-btn').addEventListener('click', function() {
     players.player1.hand = 'scissors';
+    updateActiveButton('scissors-btn');
     playGameRound();
 });
+
+// Function to update active button highlighting
+function updateActiveButton(buttonId) {
+    // Remove 'active' class from all buttons
+    document.querySelectorAll('.hand-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Add 'active' class to the clicked button
+    document.getElementById(buttonId).classList.add('active');
+}
 
 // Function to play a round between two players
 function playRound(player1, player2) {
