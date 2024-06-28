@@ -29,6 +29,8 @@ function displayWeatherData(data) {
     const city = data.name;
     const temperature = data.main.temp;
     const conditions = data.weather[0].description;
+    const tempHigh = data.main.temp_max;
+    const tempLow = data.main.temp_min;
     const icon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
     if (document.getElementById('currentDate')) document.getElementById('currentDate').innerText = currentDate;
@@ -37,6 +39,8 @@ function displayWeatherData(data) {
     if (document.getElementById('conditions')) document.getElementById('conditions').innerText = conditions;
     if (document.getElementById('weather-icon-now')) document.getElementById('weather-icon-now').src = icon;
     if (document.getElementById('weather-icon-conditions')) document.getElementById('weather-icon-conditions').src = icon;
+    if (document.getElementById('wrapper-temp-high')) document.getElementById('wrapper-temp-high').innerText = tempHigh;
+    if (document.getElementById('wrapper-temp-low')) document.getElementById('wrapper-temp-low').innerText = tempLow;
 
     const main = data.weather[0].main;
     const description = data.weather[0].description;
@@ -97,6 +101,30 @@ function displayWeatherData(data) {
             break;
         default:
             document.getElementById("wrapper-bg").style.backgroundImage = "url('https://mdbgo.io/ascensus/mdb-advanced/img/clear.gif')";
+            break;
+    }
+
+    switch (main) {
+        case "Snow":
+            document.getElementById("headerwrapper").style.backgroundImage = "url('https://mdbgo.io/ascensus/mdb-advanced/img/snow.gif')";
+            break;
+        case "Clouds":
+            document.getElementById("headerwrapper").style.backgroundImage = "url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif')";
+            break;
+        case "Fog":
+            document.getElementById("headerwrapper").style.backgroundImage = "url('https://mdbgo.io/ascensus/mdb-advanced/img/fog.gif')";
+            break;
+        case "Rain":
+            document.getElementById("headerwrapper").style.backgroundImage = "url('https://mdbgo.io/ascensus/mdb-advanced/img/rain.gif')";
+            break;
+        case "Clear":
+            document.getElementById("headerwrapper").style.backgroundImage = "url('https://mdbgo.io/ascensus/mdb-advanced/img/clear.gif')";
+            break;
+        case "Thunderstorm":
+            document.getElementById("headerwrapper").style.backgroundImage = "url('https://mdbgo.io/ascensus/mdb-advanced/img/thunderstorm.gif')";
+            break;
+        default:
+            document.getElementById("headerwrapper").style.backgroundImage = "url('https://mdbgo.io/ascensus/mdb-advanced/img/clear.gif')";
             break;
     }
 
