@@ -42,7 +42,7 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
 
     const itemId = Date.now();                                                                          //creates a unique intemID using the current timestamp
 
-    const item = { id: itemId, name: itemName, price: itemPrice};                                       //Creates an item object with properties id, name, and price 
+    const item = { id: itemId, name: itemName, price: itemPrice};                                       //Creates an item object with properties id, name, and price using the retireved values and geneerated ids
 
     addItem(item);                                                                                      //calls the addItem function
 

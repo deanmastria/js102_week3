@@ -1,4 +1,4 @@
-let list = document.getElementById('list');                                                     //retrieves the DOM elemenet with the id 'list' and stores it in the variable `list`
+let list = document.getElementById('list');                                                     //retrieves the DOM elemenet with the id 'list' and stores it in the variable `list`, allowing direct manipulation to the elements themselves
 
 list.innerHTML = list.innerHTML.replace('Apples', 'Granny Smith Apples');                       //updates the HTML content inside `list and replaces apples with Granny smiths
 
